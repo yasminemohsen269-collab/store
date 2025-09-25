@@ -2,7 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("dev.flutter.flutter-gradle-plugin")
-    id("com.google.gms.google-services") 
+    id("com.google.gms.google-services") // Firebase plugin
 }
 
 android {
@@ -21,7 +21,8 @@ android {
 
     defaultConfig {
         applicationId = "com.example.store"
-        minSdk = flutter.minSdkVersion
+        // هنا أهم تعديل
+        minSdk = 23
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
@@ -39,11 +40,14 @@ flutter {
 }
 
 dependencies {
-   
+    // Firebase BOM
     implementation(platform("com.google.firebase:firebase-bom:34.3.0"))
+
+    // Firebase SDKs
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-auth")
 
-    // ممكن تزودي أي مكتبات تانية من هنا:
-    // https://firebase.google.com/docs/android/setup#available-libraries
+    // لو محتاجة Firestore أو Storage تقدري تزوديهم هنا:
+    // implementation("com.google.firebase:firebase-firestore")
+    // implementation("com.google.firebase:firebase-storage")
 }

@@ -1,24 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:store/models/product_model.dart';
-import 'package:store/screens/update_product_screen.dart';
 import 'package:store/services/get_all_product_service.dart';
 import 'package:store/widgets/custom_card.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
   static String id = "HomeScreen";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text(
+        title: const Text(
           "New Trend",
           style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
         ),
         actions: [
-          IconButton(onPressed: () {}, icon: Icon(FontAwesomeIcons.cartPlus)),
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(FontAwesomeIcons.cartPlus),
+          ),
         ],
       ),
       body: Padding(
@@ -32,7 +35,6 @@ class HomeScreen extends StatelessWidget {
               return Center(child: Text("Error: ${snapshot.error}"));
             } else if (snapshot.hasData) {
               List<ProductModel> products = snapshot.data!;
-              print("Products length: ${products.length}");
               return GridView.builder(
                 clipBehavior: Clip.none,
                 itemCount: products.length,
